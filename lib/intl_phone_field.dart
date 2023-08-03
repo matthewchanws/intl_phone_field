@@ -276,7 +276,7 @@ class IntlPhoneField extends StatefulWidget {
     this.dropdownIcon = const Icon(Icons.arrow_drop_down),
     this.autofocus = false,
     this.textInputAction,
-    this.autovalidateMode = AutovalidateMode.onUserInteraction,
+    this.autovalidateMode = AutovalidateMode.disabled,
     this.showCountryFlag = true,
     this.cursorColor,
     this.disableLengthCheck = false,
@@ -417,7 +417,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
         widget.onChanged?.call(phoneNumber);
       },
       validator: (value) {
-        if (value == null || !isNumeric(value)) return validatorMessage;
+        if (value == null || !isNumeric(value)) return 'Mobile number is required';
         if (!widget.disableLengthCheck) {
           return value.length >= _selectedCountry.minLength && value.length <= _selectedCountry.maxLength
               ? null
